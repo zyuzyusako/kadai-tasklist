@@ -13,6 +13,14 @@
                 {{-- タスク作成ページへのリンク --}}
                 <li class="nav-item">{!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'nav-link']) !!}</li>
             </ul>
+            
+            {{--追加--}}
+            <ul class="nav navbar-nav navbar-right">
+                    {{-- ユーザ登録ページへのリンク --}}
+                    <li>{!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</li>
+                    {{-- ログインページへのリンク --}}
+                    <li><a href="#">Login</a></li>
+                </ul>
         </div>
     </nav>
 </header>
