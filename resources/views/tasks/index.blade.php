@@ -10,8 +10,9 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>id</th> 
                     <th>タスク一覧</th>
+                    <th>ステータス</th>
                 </tr>
             </thead>
             <tbody>
