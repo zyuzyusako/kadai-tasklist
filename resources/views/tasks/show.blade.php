@@ -24,7 +24,7 @@
         </tr>
     </table>
 
-    {{-- 編集ページへのリンク --}}
+    {{--編集ページへのリンク--}}
     {!! link_to_route('tasks.edit', '編集ページ', ['task' => $task->id], ['class' => 'btn btn-light']) !!}
     
     

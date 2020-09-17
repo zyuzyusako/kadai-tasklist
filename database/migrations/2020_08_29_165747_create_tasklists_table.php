@@ -17,6 +17,8 @@ class CreateTasklistsTable extends Migration
             $table->bigIncrements('id');
             $table->string('content'); // contentカラム追加
             $table->timestamps();
+            
+            $table->dropForeign('tasks_user_id_foreign');
         });
     }
 
