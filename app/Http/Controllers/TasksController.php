@@ -55,7 +55,7 @@ class TasksController extends Controller
         
         //タスク作成
         $task=new Task;
-        $task->user_id = \Auth::id(); //0917追加
+        
         $task->status=$request->status;//追加
         $task->content=$request->content;
         $task->save();
@@ -104,7 +104,8 @@ class TasksController extends Controller
         $task = Task::findOrFail($id);
         // タスクを更新
         $task->status=$request->status;//追加
-       // $task->user_id=$request->user_id;//0917追加
+       
+       
         $task->content = $request->content;
         $task->save();
 
