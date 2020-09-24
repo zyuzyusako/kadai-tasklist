@@ -1,23 +1,37 @@
-@if (count($tasks) > 0)
-    <ul class="list-unstyled">
-        @foreach ($tasks as $task)
-            <li class="media mb-3">
-                {{-- 投稿の所有者のメールアドレスをもとにGravatarを取得して表示 --}}
-                <img class="mr-2 rounded" src="{{ Gravatar::get($micropost->user->email, ['size' => 50]) }}" alt="">
-                <div class="media-body">
-                    <div>
-                        {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
-                        {!! link_to_route('users.show', $task->user->name, ['user' => $task->user->id]) !!}
-                        <span class="text-muted">posted at {{ $task->created_at }}</span>
-                    </div>
-                    <div>
-                        {{-- 投稿内容 --}}
-                        <p class="mb-0">{!! nl2br(e($task->content)) !!}</p>
-                    </div>
-                </div>
-            </li>
-        @endforeach
-    </ul>
-    {{-- ページネーションのリンク --}}
-    {{ $tasks->links() }}
-@endif
+@extends('layouts.app')
+
+@section('content')
+
+    <h1>タスク一覧</h1>
+      @if (count($tasks) > 0)
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>タイトル</th>
+                    <th>メッセージ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($tasks as $task)
+                <tr>
+                    {{-- メッセージ詳細ページへのリンク --}}
+                    <td>{!! link_to_route('tasks.show', $task->id, ['task' => $task->id]) !!}</td>
+                    <td>{{ $task->title }}</td>
+                    <td>{{ $task->content }}</td>
+                    
+                       
+                </tr>
+                @endforeach
+            </tbody>
+             
+        </table>
+        {{-- ページネーションのリンク --}}
+        {{ $tasks->links() }}
+
+        {{-- メッセージ作成ページへのリンク --}}
+        {!! link_to_route('tasks.create', '新規メッセージの投稿', [], ['class' => 'btn btn-primary']) !!}
+    @endif
+
+
+@endsection

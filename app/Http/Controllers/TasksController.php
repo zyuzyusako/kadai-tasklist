@@ -14,11 +14,14 @@ class TasksController extends Controller
     public function index()
     {
         $data = [];
+        
         if (\Auth::check()) { // 認証済みの場合
             // 認証済みユーザを取得
             $user = \Auth::user();
             // ユーザの投稿の一覧を作成日時の降順で取得
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+            // $tasksの中身を確認できる
+            // dd($tasks);
 
             $data = [
                 'user' => $user,
@@ -52,6 +55,7 @@ class TasksController extends Controller
         
         //タスク作成
         $task=new Task;
+        $task->user_id = \Auth::id(); //0917追加
         $task->status=$request->status;//追加
         $task->content=$request->content;
         $task->save();
@@ -91,7 +95,8 @@ class TasksController extends Controller
          //バリデーション
         $request->validate([
             'status'=>'required|max:10', //追加
-            'content'=>'required' //追加
+           
+            'content'=>'required' ,//追加
             
         ]);
         
@@ -99,6 +104,7 @@ class TasksController extends Controller
         $task = Task::findOrFail($id);
         // タスクを更新
         $task->status=$request->status;//追加
+       // $task->user_id=$request->user_id;//0917追加
         $task->content = $request->content;
         $task->save();
 

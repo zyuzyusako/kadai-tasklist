@@ -18,16 +18,17 @@ class CreateTasklistsTable extends Migration
             $table->string('content'); // contentカラム追加
             $table->timestamps();
             
-            $table->dropForeign('tasks_user_id_foreign');
-        });
+        
+    });
     }
+    
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
+   public function down()
     {
         Schema::dropIfExists('tasks');
     }
